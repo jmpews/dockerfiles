@@ -22,8 +22,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
                                     libc6-dev \
                                     make
 # 不进行交互
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl
-RUN rm -rf /var/lib/apt/lists/*
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl git
+# RUN rm -rf /var/lib/apt/lists/*
 
 # 修改时区
 RUN echo "Asia/Shanghai" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
