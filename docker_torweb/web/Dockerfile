@@ -66,5 +66,6 @@ RUN cd /app/torweb \
 WORKDIR /app/torweb
 # EXPOSE 8888
 # CMD ["/usr/local/python3.5.2/bin/python3", "app.py"]
-# docker run -d -p 8888:8888 --link mysql:db 
+# docker run -d -P --link db:db jmpews/base:test1
+# docker run -d -p 8888:8888 --link mysql:db
 

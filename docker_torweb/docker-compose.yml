@@ -1,0 +1,16 @@
+torweb:
+  build: ./web
+  links:
+    - db:db
+  ports:
+    - 8888:8888
+  command: /usr/local/python3.5.2/bin/python3 app.py
+
+db:
+  image: daocloud.io/library/mysql:5.7.14
+  expose:
+    - "3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+
+
