@@ -4,17 +4,9 @@ MAINTAINER jmpews "jmpews@gmail.com"
 
 # 修改源
 RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak \
-&& echo 'deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse\n\
-deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse\n\
-deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse\n\
-deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse\n\
-deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse\n\
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse\n\
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse\n\
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse\n\
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse\n\
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse' > /etc/apt/sources.list \
+&& sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/ubuntu/g' /etc/apt/sources.list \
 && apt-get update
+
 # 不进行交互
 # 先检查有没有安装 sqlite3 ssl
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
