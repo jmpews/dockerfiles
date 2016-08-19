@@ -4,7 +4,7 @@ MAINTAINER jmpews "jmpews@gmail.com"
 
 # 修改源
 RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak \
-&& sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/ubuntu/g' /etc/apt/sources.list \
+&& sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list \
 && apt-get update
 
 # 不进行交互
