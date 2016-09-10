@@ -1,0 +1,24 @@
+version: 0.1
+log:
+  level: debug
+  fields:
+    service: registry
+storage:
+    cache:
+        layerinfo: inmemory
+    filesystem:
+        rootdirectory: /storage
+    maintenance:
+        uploadpurging:
+            enabled: false
+    delete:
+        enabled: true
+http:
+    addr: :5000
+    secret: placeholder
+auth:
+  token:
+    issuer: registry-token-issuer
+    realm: http://10.0.246.79:9000/registryauth/auth
+    rootcertbundle: /etc/registry/root.crt
+    service: token-service
