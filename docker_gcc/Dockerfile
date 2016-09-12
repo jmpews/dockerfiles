@@ -8,11 +8,12 @@ RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak \
 && apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-git \
-gcc \
+build-essential \
 gdb \
 vim \
+curl \
 wget \
+git \
 tmux
 
 # 修改时区
@@ -23,4 +24,22 @@ RUN tmux start-server
 # vim配置文件
 RUN wget --no-check-certificate -qO $HOME/.vimrc https://raw.githubusercontent.com/jmpews/configs/master/vim/.vimrc
 
+# # Python环境配置
+# RUN mkdir ~/.pip && echo '[global]\n\
+# index-url = http://mirrors.aliyun.com/pypi/simple/\n\
+# [install]\n\
+# trusted-host = mirrors.aliyun.com' > ~/.pip/pip.conf
+
+# # RUN wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
+# RUN cd /root/ \
+# 	&& wget --no-check-certificate -qO ./Python-3.5.2.tgz https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz \
+#     && tar zxvf Python-3.5.2.tgz \
+#     && cd /root/Python-3.5.2 \
+#     && ./configure --prefix=/usr/local/python3.5.2 \
+#     && make && make install
+
+# Peda 安装
+RUN GIT_SSL_NO_VERIFY=true git clone https://github.com/longld/peda.git ~/peda \
+	&& echo "source ~/peda/peda.py" >> ~/.gdbinit \
+	&& echo "DONE! debug your program with gdb and enjoy"
 WORKDIR /root
