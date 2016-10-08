@@ -10,6 +10,8 @@ RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak \
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
 build-essential \
 gdb \
+python \
+python-pip \
 vim \
 curl \
 wget \
