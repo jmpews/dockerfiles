@@ -1,8 +1,8 @@
 version: 0.1
 log:
-  level: debug
-  fields:
-    service: registry
+    level: debug
+    fields:
+        service: registry
 storage:
     cache:
         layerinfo: inmemory
@@ -17,8 +17,15 @@ http:
     addr: :5000
     secret: placeholder
 auth:
-  token:
-    issuer: registry-token-issuer
-    realm: http://10.0.246.79:9000/registryauth/auth
-    rootcertbundle: /etc/registry/root.crt
-    service: token-service
+    token:
+        issuer: registry-token-issuer
+        realm: http://127.0.0.1:9000/registryauth/auth
+        rootcertbundle: /etc/registry/root.crt
+        service: token-service
+notifications:
+    endpoints:
+        - name: alistener
+          url: http://127.0.0.1:9000/registryauth/event
+          timeout: 500ms
+          threshold: 5
+          backoff: 1s
