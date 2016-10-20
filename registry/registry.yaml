@@ -19,13 +19,13 @@ http:
 auth:
     token:
         issuer: registry-token-issuer
-        realm: http://10.0.246.79:9000/registryauth/auth
+        realm: http://192.168.1.14:9000/registryauth/auth
         rootcertbundle: /etc/registry/domain.crt
         service: token-service
 notifications:
     endpoints:
         - name: alistener
-          url: http://10.0.246.79:9000/registryauth/event
+          url: http://192.168.1.14:9000/registryauth/event
           timeout: 500ms
           threshold: 5
           backoff: 1s
