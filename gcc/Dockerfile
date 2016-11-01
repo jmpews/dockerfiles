@@ -1,4 +1,4 @@
-FROM daocloud.io/library/ubuntu:16.04
+FROM ubuntu:14.04
 
 MAINTAINER jmpews "jmpews@gmail.com"
 
@@ -8,10 +8,11 @@ RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak \
 && apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-build-essential \
+# build-essential \
+gcc \
 gdb \
-python \
-python-pip \
+# python \
+# python-pip \
 vim \
 curl \
 wget \
@@ -44,4 +45,11 @@ RUN wget --no-check-certificate -qO $HOME/.vimrc https://raw.githubusercontent.c
 RUN GIT_SSL_NO_VERIFY=true git clone https://github.com/longld/peda.git ~/peda \
 	&& echo "source ~/peda/peda.py" >> ~/.gdbinit \
 	&& echo "DONE! debug your program with gdb and enjoy"
+
+# config 配置
+RUN  GIT_SSL_NO_VERIFY=true git clone https://github.com/jmpews/configs.git ~/configs \
+    && cp ~/configs/vim/.vimrc ~/ \
+    && cp ~/configs/vim/.vimrc.generate ~/ \
+    && cp ~/configs/tmux/.tmux.conf ~/
+
 WORKDIR /root
