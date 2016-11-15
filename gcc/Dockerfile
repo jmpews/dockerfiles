@@ -4,11 +4,13 @@ MAINTAINER jmpews "jmpews@gmail.com"
 
 # 修改源
 RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak \
-&& sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list \
+&& sed -i 's/us.archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list \
 && apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-# build-essential \
+build-essential \
+# x64 -> x32
+libc6-dev libc6-dev-i386 \
 gcc \
 gdb \
 # python \
