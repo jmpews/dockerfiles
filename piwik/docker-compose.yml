@@ -22,5 +22,5 @@ services:
       PHP_IDE_CONFIG: "serverName=docker"
       PHP_XDEBUG_ENABLED: 0 # Set 1 to enable.
       # your host ip
-      XDEBUG_CONFIG: remote_host=10.0.246.147
+      XDEBUG_CONFIG: remote_host=x.x.x.x
 

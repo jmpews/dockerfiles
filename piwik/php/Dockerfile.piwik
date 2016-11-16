@@ -26,6 +26,7 @@ COPY ./php/php.ini /usr/local/etc/php/php.ini
 
 # WORKDIR is /var/www/html (inherited via "FROM php")
 # "/entrypoint.sh" will populate it at container startup from /usr/src/piwik
+# piwik volume
 VOLUME /var/www/html
 
 CMD ["php-fpm"]
