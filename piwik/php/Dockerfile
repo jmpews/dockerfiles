@@ -32,4 +32,4 @@ RUN docker-php-ext-install phar
 RUN pecl install intl
 RUN docker-php-ext-install intl
 
-COPY ./php/xdebug.ini /usr/local/etc/php/conf.d/
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/
