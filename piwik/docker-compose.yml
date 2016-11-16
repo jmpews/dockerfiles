@@ -5,20 +5,22 @@ services:
     ports:
       - 8088:80
     volumes:
+      # - /Users/jmpews/vulenv/piwik/piwik:/var/www/html/public
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./var/log/nginx:/var/log/nginx
-    volumes_from: [fpm]
+    volumes_from: [piwik]
     links:
-      - fpm
-  fpm:
+      - piwik
+  piwik:
     build:
       context: .
-      dockerfile: ./php/Dockerfile
+      dockerfile: ./php/Dockerfile.piwik
     volumes:
-      - /Users/jmpews/vulenv/piwik/piwik:/var/www/html/public
+      # - /Users/jmpews/vulenv/piwik/piwik:/var/www/html/public
       - ./var/log/php:/var/log/php
+      - /Users/jmpews/Downloads/piwik-2.17.1/piwik:/var/www/html/
     environment:
       PHP_IDE_CONFIG: "serverName=docker"
-      PHP_XDEBUG_ENABLED: 1 # Set 1 to enable.
+      PHP_XDEBUG_ENABLED: 0 # Set 1 to enable.
       XDEBUG_CONFIG: remote_host=10.0.246.147
 

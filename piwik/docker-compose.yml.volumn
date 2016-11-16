@@ -1,24 +1,25 @@
 version: '2'
 services:
-  nginx:
-    image: nginx
-    ports:
-      - 8088:80
+  data:
+    image: busybox
     volumes:
+      - ./:/var/www/html
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./var/log/nginx:/var/log/nginx
-    volumes_from: [fpm]
+
+  web:
+    image: nginx
+    volumes_from: [data]
     links:
       - fpm
+    ports:
+      - "8088:80"
+
   fpm:
     build:
       context: .
       dockerfile: ./php/Dockerfile
-    volumes:
-      - /Users/jmpews/vulenv/piwik/piwik:/var/www/html/public
-      - ./var/log/php:/var/log/php
+    volumes_from: [data]
     environment:
       PHP_IDE_CONFIG: "serverName=docker"
       PHP_XDEBUG_ENABLED: 1 # Set 1 to enable.
-      XDEBUG_CONFIG: remote_host=10.0.246.147
-
+      XDEBUG_CONFIG: remote_host=192.168.2.114
