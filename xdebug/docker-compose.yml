@@ -15,11 +15,11 @@ services:
       context: .
       dockerfile: ./php/Dockerfile
     volumes:
-      - /Users/jmpews/vulenv/piwik/piwik:/var/www/html/public
+      - ./public:/var/www/html/public
       - ./var/log/php:/var/log/php
     environment:
       PHP_IDE_CONFIG: "serverName=docker"
       PHP_XDEBUG_ENABLED: 1 # Set 1 to enable.
       # your host ip
-      XDEBUG_CONFIG: remote_host=x.x.x.x
+      # XDEBUG_CONFIG: remote_host=x.x.x.x
 
