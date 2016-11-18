@@ -3,7 +3,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - 8088:80
+      - 80:80
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./var/log/nginx:/var/log/nginx
@@ -18,7 +18,6 @@ services:
       - ./public:/var/www/html/public
       - ./var/log/php:/var/log/php
     environment:
-      PHP_IDE_CONFIG: "serverName=docker"
       PHP_XDEBUG_ENABLED: 1 # Set 1 to enable.
       # your host ip
       XDEBUG_CONFIG: remote_host=x.x.x.x

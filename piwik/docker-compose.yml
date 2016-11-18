@@ -11,16 +11,18 @@ services:
     links:
       - piwik
   piwik:
-    build:
-      context: .
-      dockerfile: ./php/Dockerfile.piwik
+    image: xdebug_piwik
+    # build:
+    #   context: .
+    #   dockerfile: ./php/Dockerfile.piwik
     volumes:
       - ./var/log/php:/var/log/php
       # piwiki
-      - /Users/jmpews/Downloads/piwik-2.17.1/piwik:/var/www/html/
+      - /Users/jmpews/Downloads/piwik-2.15.0/piwik:/var/www/html/
     environment:
-      PHP_IDE_CONFIG: "serverName=docker"
+      # must not config it, unless you config the Debug Server
+      # PHP_IDE_CONFIG: "serverName=docker"
       PHP_XDEBUG_ENABLED: 0 # Set 1 to enable.
       # your host ip
-      XDEBUG_CONFIG: remote_host=x.x.x.x
+      XDEBUG_CONFIG: remote_host=10.0.246.147
 
